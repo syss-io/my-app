@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Naming Sprint Workspace
 
-## Getting Started
+Interactive naming environment where founders capture an idea, tweak tonal and market constraints, and receive curated name directions with live domain availability checks.
 
-First, run the development server:
+Built with Next.js App Router, shadcn/ui components, TanStack Query, LangChain + OpenAI, and Domainr’s RapidAPI search.
+
+## Prerequisites
+
+- Node.js 18+
+- pnpm 8+
+- OpenAI account with API access
+- RapidAPI key for the Domainr Search API
+
+## Environment Variables
+
+Create a `.env.local` file and provide the following values:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+OPENAI_API_KEY=sk-...
+# Optional: override default `gpt-4o-mini`
+OPENAI_MODEL=gpt-4o-mini
+RAPIDAPI_KEY=59aaf6572cmsh516a74960baa3e8p1c2d24jsn1e91dc4f8d23
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> The provided RapidAPI key matches the development key from the project brief. Replace it with your own key in production.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Install & Run
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm install
+pnpm dev
+```
 
-## Learn More
+Visit [http://localhost:3000](http://localhost:3000) to open the workspace.
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- UI uses only shadcn/ui primitives. Add new pieces with `pnpm dlx shadcn@latest add <component>`.
+- LangChain registers a `domainr_search` tool so the LLM must verify each candidate through Domainr before responding.
+- Naming results stream through a dedicated API route at `POST /api/naming`.
+- Query Client provider lives in `components/providers/query-client-provider.tsx` and wraps the App Router layout so React Query is available across client components.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev     # start dev server
+pnpm lint    # run eslint
+pnpm build   # production build
+pnpm start   # start production server
+```
