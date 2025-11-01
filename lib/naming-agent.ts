@@ -133,7 +133,7 @@ export async function generateNamingIdeas(input: NamingRequest) {
 
       conversation.push(
         new ToolMessage({
-          tool_call_id: call.id,
+          tool_call_id: call.id ?? "",
           name: call.name,
           content: typeof toolResult === "string" ? toolResult : JSON.stringify(toolResult),
         }),
