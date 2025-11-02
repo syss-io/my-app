@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-app
+    ports:
+      - "8080:8080"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      # TURSO_DATABASE_URL and TURSO_AUTH_TOKEN not set, so it will use local SQLite
+    volumes:
+      - app-data:/root
+    restart: unless-stopped
+
+volumes:
+  app-data:
+
