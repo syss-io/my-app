@@ -7,19 +7,19 @@ import { Button } from '@/components/ui/button'
 export default function Header() {
   return (
     <header className="border-b bg-background">
-      <div className="flex h-16 items-center justify-between gap-4 px-4">
-        <div className="flex items-center gap-3">
-          <SidebarTrigger className="size-9" />
-          <Link to="/" className="flex items-center gap-2">
+      <div className="flex h-16 items-center justify-between gap-4 px-4 pt-2 md:px-6 md:pt-4">
+        <div className="flex min-w-0 flex-1 items-center gap-3">
+          <SidebarTrigger className="size-9 shrink-0" />
+          <Link to="/" className="flex min-w-0 items-center gap-2">
             <img
               src="/tanstack-word-logo-white.svg"
               alt="TanStack"
-              className="h-8 w-auto"
+              className="hidden h-8 w-auto md:block"
             />
-            <span className="text-lg font-semibold text-foreground">Dashboard</span>
+            <span className="truncate text-lg font-semibold text-foreground">Dashboard</span>
           </Link>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-3">
           <SignedOut>
             <SignInButton mode="modal">
               <Button size="sm">Sign in</Button>

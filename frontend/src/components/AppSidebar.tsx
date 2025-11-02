@@ -1,14 +1,14 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
-import { Link, useRouterState } from '@tanstack/react-router'
-import { SignedIn, SignedOut, SignInButton } from '@clerk/clerk-react'
+import { Link, useRouterState } from "@tanstack/react-router";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import {
   BookOpen,
   LayoutDashboard,
   LifeBuoy,
   Settings2,
   Sparkles,
-} from 'lucide-react'
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -24,52 +24,39 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarRail,
-} from '@/components/ui/sidebar'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 
 const navigationItems = [
   {
-    label: 'Overview',
-    to: '/',
+    label: "Overview",
+    to: "/",
     icon: LayoutDashboard,
-    description: 'Latest activity and quick stats',
+    description: "Latest activity and quick stats",
   },
   {
-    label: 'Playground',
-    to: '/playground',
+    label: "Playground",
+    to: "/playground",
     icon: Sparkles,
-    description: 'Experiment with realtime tools',
+    description: "Experiment with realtime tools",
   },
   {
-    label: 'Learn',
-    to: '/learn',
+    label: "Learn",
+    to: "/learn",
     icon: BookOpen,
-    description: 'Documentation and tutorials',
+    description: "Documentation and tutorials",
   },
-]
+];
 
 export function AppSidebar({ children }: { children: ReactNode }) {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
-  })
+  });
 
   return (
     <SidebarProvider>
       <div className="flex min-h-svh w-full bg-muted/20">
         <Sidebar variant="floating" collapsible="icon">
-          <SidebarHeader className="gap-1">
-            <div className="flex items-center gap-2 rounded-lg bg-muted/40 p-2">
-              <span className="grid size-8 place-items-center rounded-md bg-primary text-primary-foreground text-sm font-semibold">
-                SY
-              </span>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">Systems Studio</span>
-                <span className="text-xs text-muted-foreground">
-                  Status: {pathname === '/' ? 'Active' : 'Exploring'}
-                </span>
-              </div>
-            </div>
-          </SidebarHeader>
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>Navigation</SidebarGroupLabel>
@@ -98,7 +85,10 @@ export function AppSidebar({ children }: { children: ReactNode }) {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton tooltip="Adjust preferences for your workspace" asChild>
+                    <SidebarMenuButton
+                      tooltip="Adjust preferences for your workspace"
+                      asChild
+                    >
                       <Link to="/settings" className="flex items-center gap-2">
                         <Settings2 className="size-4" />
                         <span>Settings</span>
@@ -106,7 +96,10 @@ export function AppSidebar({ children }: { children: ReactNode }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton tooltip="Guided help when you need it" asChild>
+                    <SidebarMenuButton
+                      tooltip="Guided help when you need it"
+                      asChild
+                    >
                       <Link to="/support" className="flex items-center gap-2">
                         <LifeBuoy className="size-4" />
                         <span>Support</span>
@@ -117,27 +110,11 @@ export function AppSidebar({ children }: { children: ReactNode }) {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarFooter>
-            <SignedOut>
-              <SignInButton mode="modal">
-                <Button className="w-full" variant="outline">
-                  Sign in to sync
-                </Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <div className="rounded-lg bg-muted/40 p-3 text-xs text-muted-foreground">
-                Access your personal spaces and manage deployments.
-              </div>
-            </SignedIn>
-          </SidebarFooter>
+          <SidebarFooter></SidebarFooter>
         </Sidebar>
         <SidebarRail />
-        <SidebarInset>
-          {children}
-        </SidebarInset>
+        <SidebarInset>{children}</SidebarInset>
       </div>
     </SidebarProvider>
-  )
+  );
 }
-

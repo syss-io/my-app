@@ -10,7 +10,6 @@ import {
 import { ArrowRight, ShieldCheck, Zap } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { SidebarTrigger } from '@/components/ui/sidebar'
 import logo from '../logo.svg'
 
 export const Route = createFileRoute('/')({
@@ -25,7 +24,6 @@ function App() {
       <div className="flex items-center justify-between rounded-lg border bg-card p-6 shadow-sm">
         <div className="grid gap-2 text-left">
           <div className="flex items-center gap-3 text-muted-foreground">
-            <SidebarTrigger className="size-8" />
             <span className="text-sm font-medium uppercase tracking-wide">
               Quick access
             </span>
